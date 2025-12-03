@@ -1,13 +1,13 @@
 <?php
-// CRITICAL: Must include dbConfig FIRST
+
 require_once 'dbConfig.php'; 
 require_once 'models.php';
 
 global $pdo; 
 
-// =========================================================================
-// 1. REGISTER USER
-// =========================================================================
+
+
+
 if (isset($_POST['registerUserBtn'])) {
     $username = $_POST['username'];
     $password = $_POST['password']; 
@@ -24,9 +24,9 @@ if (isset($_POST['registerUserBtn'])) {
     }
 }
 
-// =========================================================================
-// 2. LOGIN USER
-// =========================================================================
+
+
+
 if (isset($_POST['loginUserBtn'])) {
     $username = $_POST['username'];
     $password = $_POST['password']; 
@@ -40,12 +40,8 @@ if (isset($_POST['loginUserBtn'])) {
     } else {
         $_SESSION['message'] = "Please make sure the input fields are not empty for the login!";
         header("Location: ../login.php"); exit();
-    }
-}
 
-// =========================================================================
-// 3. LOGOUT USER
-// =========================================================================
+
 if (isset($_GET['logoutAUser'])) {
     unset($_SESSION['username']);
     $_SESSION['message'] = "You have been successfully logged out.";
@@ -53,9 +49,9 @@ if (isset($_GET['logoutAUser'])) {
     exit();
 }
 
-// =========================================================================
-// 4. SUBMIT CANTEEN ORDER (STORES TOTAL AND CHANGE)
-// =========================================================================
+
+
+
 if (isset($_POST['submitOrderBtn'])) {
     
     if (!isset($_SESSION['username'])) {
@@ -68,7 +64,7 @@ if (isset($_POST['submitOrderBtn'])) {
     $quantity = (int)$_POST['quantity'];
     $cash = (int)$_POST['cash'];
     
-    // Determine price
+    
     $price = 0;
     switch ($item) {
         case 'Fishball': $price = 30; break;
@@ -86,12 +82,13 @@ if (isset($_POST['submitOrderBtn'])) {
         exit();
     }
     
-    // CRITICAL: Store the individual receipt components
+    
     $_SESSION['receipt_total'] = $total;
     $_SESSION['receipt_change'] = $change; 
     
-    // Redirect back to index.php to display the receipt view
+    
     header("Location: ../index.php"); 
     exit();
 }
+
 ?>
