@@ -2,12 +2,12 @@
 require_once 'core/models.php'; 
 require_once 'core/handleForms.php'; 
 
-// 🚨 CRITICAL FIX: Declares the global database connection variable.
+
 global $pdo; 
 
 if (!isset($_SESSION['username'])) {
 	header("Location: login.php");
-    exit(); // Stops script execution after redirection
+    exit(); 
 }
 ?>
 <!DOCTYPE html>
@@ -35,4 +35,5 @@ if (!isset($_SESSION['username'])) {
 	<h1>Username: <?php echo $getUserByID['username']; ?></h1>
 	<h1>Date Joined: <?php echo $getUserByID['date_added']; ?></h1>
 </body>
+
 </html>
