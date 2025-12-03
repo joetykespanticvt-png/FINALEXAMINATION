@@ -1,5 +1,5 @@
 <?php 
-// CRITICAL FIX: Ensure all core files are included
+
 require_once 'core/dbConfig.php'; 
 require_once 'core/models.php'; 
 require_once 'core/handleForms.php'; 
@@ -11,13 +11,13 @@ if (!isset($_SESSION['username'])) {
     exit(); 
 }
 
-// Check for the receipt data to determine which view to show
+
 $is_receipt = isset($_SESSION['receipt_total']) && isset($_SESSION['receipt_change']);
 $receipt_total = $is_receipt ? $_SESSION['receipt_total'] : null;
 $receipt_change = $is_receipt ? $_SESSION['receipt_change'] : null;
 
 if ($is_receipt) {
-    // Clear the receipt data after reading it, so the menu shows next time
+    
     unset($_SESSION['receipt_total']); 
     unset($_SESSION['receipt_change']); 
 }
@@ -93,4 +93,5 @@ if ($is_receipt) {
 
     <?php } ?>
 </body>
+
 </html>
